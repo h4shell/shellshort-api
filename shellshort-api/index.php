@@ -10,8 +10,7 @@ if (!isset($_GET["c"])) {
     if ($db_response !== false) {
         $db->addVisit($_GET["c"]);
         header('Content-Type: application/json');
-        // header("Location: " . $db_response);
-        echo json_encode(array("url" => $db_response));
+        header("Location: " . $db_response);
     } else {
         header('Content-Type: application/json');
         echo json_encode(array("error" => "missing code"));
