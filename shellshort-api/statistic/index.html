@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>STATISTICHE</h2>
+    <a href="" id="short_link"></a>
+    <p>Number of visit: <b id="number_visit"></b></p>
+</body>
+
+<script>
+    const shortLink = document.querySelector('#short_link');
+    const numberVisit = document.querySelector('#number_visit');
+
+    const url = new URL(window.location.href);
+
+    // Ottieni i parametri della query string
+    const params = url.searchParams;
+
+    // Stampa il valore del parametro 'c'
+    const cValue = params.get('c');
+
+    shortLink.href = `${window.location.origin}/?c=${cValue}`
+    shortLink.innerText = `${window.location.origin}/?c=${cValue}`
+
+    fetch(`/api/statistic/?c=${cValue}`)
+        .then(response => {
+            const contentType = response.headers.get('Content-Type');
+            if (contentType && contentType.includes('application/json')) {
+                return response.json()
+            } else {
+                // Altrimenti, gestisci il caso in cui non sia JSON
+                location.href = '/short/?error=not-json'
+            }
+        })
+        .then(text => {
+            numberVisit.innerText = text.code.statistic
+        })
+
+
+
+</script>
+
+</html>

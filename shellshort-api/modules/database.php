@@ -85,6 +85,23 @@ class Database
         }
     }
 
+    public function showStatistic($code){
+        try {
+            $sql = "SELECT * FROM urls WHERE code = :code";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':code', $code);
+            $stmt->execute();
+            $statistic = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($statistic === false) {
+                return false;
+            } else {
+                return $statistic;
+            }
+        } catch (PDOException $e) {
+            echo "Errore: " . $e->getMessage();
+        }
+    }
+
     public function __destruct()
     {
         // Chiudi la connessione
