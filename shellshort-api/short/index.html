@@ -4,30 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
 
-<body>
-    <input type="text">
-    <button>Invia</button>
-
+<body class="bg-slate-800 flex justify-center items-center h-screen">
+    <input type="text" class="border-2 border-slate-600 px-2 py-1 text-black focus:outline-none" placeholder="URL">
+    <button class="border-t-2 border-r-2 border-b-2 rounded-r-xl border-slate-600 px-2 py-1"><b
+            class="text-white">CREATE
+            URL</b></button>
     <script>
         const input = document.querySelector('input');
         const button = document.querySelector('button');
         const shortLink = document.querySelector('#short_link');
-
         button.addEventListener('click', () => {
-            fetch(`/api?url=${input.value}`)
+            const input64 = btoa(input.value)
+            fetch(`/api/${input64}`)
                 .then(response => response.json())
                 .then(text => {
                     if (text.error) {
                         alert(text.error)
                     } else {
-                        const urlShort = `${window.location.origin}/statistic/?c=${text.code}`
+                        const urlShort = `${window.location.origin}/statistic/${text.code}`
                         window.location.href = urlShort
                     }
                 })
         })
+
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                const input64 = btoa(input.value)
+                fetch(`/api/${input64}`)
+                    .then(response => response.json())
+                    .then(text => {
+                        if (text.error) {
+                            alert(text.error)
+                        } else {
+                            const urlShort = `${window.location.origin}/statistic/${text.code}`
+                            window.location.href = urlShort
+                        }
+                    })
+            }
+        });
+
     </script>
 </body>
 

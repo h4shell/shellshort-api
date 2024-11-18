@@ -1,30 +1,42 @@
 <?php
 
 include_once "../modules/utils.php";
+include_once "../modules/getParams.php";
+
+
+function validateURL($url){
+    
+    $ParsedURL = explode('.', $url);
+    if (count($ParsedURL) > 1) {
+        if(explode(":", $url)[0] != "http" && explode(":", $url)[0] != "https"){
+            return "http://" . $url;
+        } else {
+            return $url;
+        }
+    } else {
+        return false;
+    }
+}
+
 
 function generate($db)
 {
+    $URL=getParams();
     $code = codeGenerator();
     header('Content-Type: application/json');
-    if (isset($_GET["url"])) {
-        if (!isValidUrl($_GET["url"])) {
-            echo json_encode(array("error" => "invalid url"));
-            exit();
+    $URL = base64_decode($URL);
+    $URL = validateURL($URL);
+
+    if ($URL) {
+        $response = $db->addUrl($code, $URL);
+        if ($response) {
+            echo json_encode(array("code" => $code));
         } else {
-            $response = $db->addUrl($code, $_GET["url"]);
-            if ($response) {
-                echo json_encode(array("code" => $code));
-            } else {
-                generate($db);
-            }
+            generate($db);
         }
     } else {
-        echo json_encode(array("error" => "missing ?url parameter"));
+        echo json_encode(array("error" => "Invalid URL format"));
     }
 }
 
 generate($db);
-
-
-
-// content-type: application/json

@@ -1,19 +1,20 @@
 <?php
 require("./modules/database.php");
+require("./modules/getParams.php");
 
-if (!isset($_GET["c"])) {
-    // header('Content-Type: application/json');
-    // echo json_encode(array("error" => "missing ?c parameter"));
-    // exit();
+header('Content-Type: application/json');
+
+
+$_CODE=getParams();
+
+if (!strlen($_CODE)) {
     header("Location: /short");
 } else {
-    $db_response = $db->getUrl($_GET["c"]);
+    $db_response = $db->getUrl($_CODE);
     if ($db_response !== false) {
-        $db->addVisit($_GET["c"]);
-        header('Content-Type: application/json');
+        $db->addVisit($_CODE);
         header("Location: " . $db_response);
     } else {
-        header('Content-Type: application/json');
-        echo json_encode(array("error" => "missing code"));
+        header("Location: /short");
     }
 }

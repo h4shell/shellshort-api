@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
 
@@ -19,16 +20,17 @@
 
     const url = new URL(window.location.href);
 
+
+
     // Ottieni i parametri della query string
-    const params = url.searchParams;
 
     // Stampa il valore del parametro 'c'
-    const cValue = params.get('c');
+    const cValue = url.pathname.split('/').pop();
 
-    shortLink.href = `${window.location.origin}/?c=${cValue}`
-    shortLink.innerText = `${window.location.origin}/?c=${cValue}`
+    shortLink.href = `${window.location.origin}/${cValue}`
+    shortLink.innerText = `${window.location.origin}/${cValue}`
 
-    fetch(`/api/statistic/?c=${cValue}`)
+    fetch(`/api/statistic/${cValue}`)
         .then(response => {
             const contentType = response.headers.get('Content-Type');
             if (contentType && contentType.includes('application/json')) {
@@ -36,6 +38,7 @@
             } else {
                 // Altrimenti, gestisci il caso in cui non sia JSON
                 location.href = '/short/?error=not-json'
+
             }
         })
         .then(text => {
