@@ -4,8 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>4gg.uno - Shorten Your URLs Effortlessly</title>
+    <link rel="canonical" href="https://4gg.uno/" />
+    <meta name="title" content="4gg.uno - Shorten Your URLs Effortlessly" />
+    <meta name="description"
+        content="4gg.uno is a simple and efficient URL shortener that helps you create short, manageable links quickly. Share your content with ease and track your link performance." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://metatags.io/" />
+    <meta property="og:title" content="4gg.uno - Shorten Your URLs Effortlessly" />
+    <meta property="og:description"
+        content="4gg.uno is a simple and efficient URL shortener that helps you create short, manageable links quickly. Share your content with ease and track your link performance." />
+    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://metatags.io/" />
+    <meta property="twitter:title" content="4gg.uno - Shorten Your URLs Effortlessly" />
+    <meta property="twitter:description"
+        content="4gg.uno is a simple and efficient URL shortener that helps you create short, manageable links quickly. Share your content with ease and track your link performance." />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+    <!-- Meta Tags Generated with https://metatags.io -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+
 </head>
 
 <style>
@@ -54,9 +77,23 @@
     input {
         border: 3px solid #353C4A
     }
+
+    #bg {
+        background: url('/images/bg.png');
+        position: fixed;
+        background-repeat: no-repeat;
+        left: 50%;
+
+        inset: 0;
+        transform: translateX(10%);
+        z-index: -1;
+        opacity: 0.6;
+    }
 </style>
 
 <body class="bg-primary text-white overflow-hidden">
+    <div id="bg">
+    </div>
     <div id="latbar" class="right-0 absolute top-0 bg-indigo-600  h-screen w-0 z-10">
         <button onclick="showLat();" class="icon p-3 absolute bg-indigo-600 rounded-full top-3 z-0"
             style="left: -4.3rem; z-index: -10;">
@@ -163,16 +200,15 @@
     </div>
     <nav class="pt-6 pl-2">
         <a href="/">
-            <h1 class="text-4xl">Linkly</h1>
+            <h1 class="text-4xl">gg4.uno</h1>
         </a>
     </nav>
     <div id="root" class="min-width">
-
         <section id="header" class="pt-20 mt-[20%]">
             <h2 class="gradient text-center md:text-6xl pb-2 text-4xl px-8 font-bold">Shorten Your<br>Loooong Links :)
             </h2>
             <p class="text-center pt-6 opacity-70 max-w-md mx-auto">
-                Linkly is an efficient and easy-to-use URL shortening service that streamlines your online experience.
+                gg4.uno is an efficient and easy-to-use URL shortening service that streamlines your online experience.
             </p>
             <div class="container relative mx-auto max-w-3xl">
                 <input type="text" placeholder="Enter the link here"
