@@ -2,7 +2,7 @@
 
 include_once "../modules/database.php";
 
-function codeGenerator($maxLenght = 10)
+function codeGenerator($maxLenght = 5)
 {
     // Definisci i caratteri che possono essere utilizzati
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
