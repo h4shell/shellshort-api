@@ -5,121 +5,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>ShortURL - Your Simple and Fast URL Shortener!
-    </title>
+    <title>Document</title>
 </head>
 
-<body class="bg-slate-800 text-white">
-    <div class="mx-auto" id="main" style="width: min(1100px, 100% - 1rem);">
-        <div class="mt-10">
-            <div class="mt-10 mb-10 mx-auto">
-                <h1 class="text-center text-3xl mb-8 underline">URL Shortener</h1>
-                <h3 class=" text-center text-2xl bold mb-5">Transform long URLs into short, manageable links
-                </h3>
-                <p class=" text-center">
-                    Welcome to [Your Service Name], the ultimate URL shortener designed to simplify your online sharing
-                    experience. Whether you're a marketer, blogger, or just someone who wants to share links easily, our
-                    tool allows you to convert lengthy URLs into concise links that are easy to share and track.
-                </p>
-            </div>
-            <div class=" flex justify-center mx-auto" ">
-                <input type=" text" class="border-2 border-slate-600 px-2 py-1 text-black focus:outline-none
-            rounded-l-xl w-full" placeholder="Enter your long URL below to create a short link">
-                <button class="border-t-2 border-r-2 border-b-2 rounded-r-xl border-slate-600 px-2 py-1">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="23" fill="white" class="bi bi-link-45deg"
-                        viewBox="0 0 16 16">
+    * {
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        transition: all .2s ease-in-out
+    }
+
+    .bg-primary {
+        background: #0B101B;
+    }
+
+    .min-width {
+        width: min(1100px, 100% - 2rem);
+        margin-inline: auto;
+    }
+
+    .bg-input {
+        background: #181E29;
+    }
+
+    h1 {
+        background: linear-gradient(89.92deg, #144EE3 0, #EB568E 8.86%, #A353AA 64.49%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        font-weight: 900 !important;
+    }
+
+    .gradient {
+        background: linear-gradient(89.92deg, #144EE3 -0.02%, #EB568E 18.86%, #A353AA 64.49%, #144EE3 100.67%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+
+    .hide {
+        visibility: hidden;
+    }
+
+    input {
+        border: 3px solid #353C4A
+    }
+</style>
+
+<body class="bg-primary text-white overflow-hidden">
+    <div id="latbar" class="right-0 absolute top-0 bg-indigo-600  h-screen w-0 z-10">
+        <button onclick="showLat();" class="icon p-3 absolute bg-indigo-600 rounded-full top-3 z-0"
+            style="left: -4.3rem; z-index: -10;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
+                <path
+                    d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z" />
+            </svg>
+        </button>
+        <div class="z-10 overflow-y-scroll h-screen">
+            <div class="px-3">
+                <section class="mt-6 mb-8" id="How it works">
+                    <h3 class="text-2xl mb-3 z-10">How it works</h3>
+                    <ol class="list-decimal list-inside grid gap-2">
+                        <li>
+                            <b class="ml-2">Paste Your Long URL</b> : Copy the link you want to shorten.
+                        </li>
+                        <li>
+                            <b class="ml-2">Click "Shorten URL"</b>: Hit the button, and our system will generate a
+                            short
+                            link
+                            in seconds.
+                            </p>
+                        </li>
+                        <li>
+                            <b class="ml-2">Share Your Shortened Link</b>: On the next page, copy your new URL and
+                            share
+                            it
+                            on
+                            social
+                            media, chats, or emails.
+                            </p>
+                        </li>
+                    </ol>
+                </section>
+                <section class="mb-12" id="trackstatistics">
+                    <h3 class="text-2xl mb-3">Track Your Statistics</h3>
+                    <p>
+                        With ShortURL, you not only shorten your links but also track their performance! Discover
+                        how
+                        many
+                        times
+                        your URL has been clicked with our click counter. Perfect for analyzing the effectiveness of
+                        your
+                        advertising campaigns and projects.
+                    </p>
+                    <h3 class="text-2xl mb-3 mt-8">Why chose ShortURL</h3>
+                    <ul class="list-disc list-inside my-3 grid gap-2">
+                        <li><b>Simple and Fast</b>: Shorten your links in just a few clicks.</li>
+                        <li><b>Detailed Statistics</b>: Monitor traffic and interactions with your URLs.</li>
+                        <li><b>Versatile</b>: Use your shortened links anywhere: publications, documents, ads,
+                            blogs,
+                            forums, and instant messages.</li>
+                        <li><b>SEO Optimized</b>: Our short URLs are designed to enhance visibility on search
+                            engines.
+                        </li>
+                    </ul>
+                </section>
+                <section class="mt-12 mb-8" id="How it works">
+                    <h3 class="text-2xl mb-3">FAQ</h3>
+                    <div class="space-y-4">
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer1')">
+                                Is it free to use ShortURL?
+                            </h3>
+                            <p id="answer1" class="hidden text-gray-400 mt-2">
+                                Yes, our URL shortening service is completely free!
+                            </p>
+                        </div>
+
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer2')">
+                                Can I customize my shortened URL?
+                            </h3>
+                            <p id="answer2" class="hidden text-gray-400 mt-2">
+                                Absolutely! We offer customization options to make your link unique and
+                                recognizable.
+                            </p>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer3')">
+                                How can I access the statistics for my links?
+                            </h3>
+                            <p id="answer3" class="hidden text-gray-400 mt-2">
+                                After shortening your URL, you can view the statistics directly from the
+                                confirmation
+                                page.
+                            </p>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer4')">
+                                Is ShortURL safe?
+                            </h3>
+                            <p id="answer4" class="hidden text-gray-400 mt-2">
+                                Definitely! Your privacy is important to us. We do not collect personal information,
+                                and
+                                your
+                                links are secure. </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <nav class="pt-6 pl-2">
+        <a href="/">
+            <h1 class="text-4xl">Linkly</h1>
+        </a>
+    </nav>
+    <div id="root" class="min-width">
+
+        <section id="header" class="pt-20 mt-[20%]">
+            <h2 class="gradient text-center md:text-6xl pb-2 text-4xl px-8 font-bold">Shorten Your<br>Loooong Links :)
+            </h2>
+            <p class="text-center pt-6 opacity-70 max-w-md mx-auto">
+                Linkly is an efficient and easy-to-use URL shortening service that streamlines your online experience.
+            </p>
+            <div class="container relative mx-auto max-w-3xl">
+                <input type="text" placeholder="Enter the link here"
+                    class="w-full py-3 px-4 mt-8 rounded-full pl-16 bg-input">
+                <button class="rounded-full bg-indigo-600 p-2 absolute bottom-[6.5px] right-2" onclick="makeUrl();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white"
+                        class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8" />
+                    </svg>
+                </button>
+                <div id="icon" class="p-2 absolute bottom-[6.5px] left-3 opacity-70">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                        class="bi bi-link-45deg" viewBox="0 0 16 16">
                         <path
                             d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
                         <path
                             d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
                     </svg>
-                </button>
-            </div>
-            <p id="box-error"
-                class="hidden rounded-md animate-pulse mx-auto text-center bg-red-500 mt-2 py-1 px-6 w-fit ">
-                Invalid URL
-                Format
-            </p>
-        </div>
-        <section class="mt-10 mb-8" id="How it works">
-            <h3 class="text-2xl mb-3">How it works</h3>
-            <ol class="list-decimal list-inside grid gap-2">
-                <li>
-                    <b class="ml-2">Paste Your Long URL</b> : Copy the link you want to shorten.
-                </li>
-                <li>
-                    <b class="ml-2">Click "Shorten URL"</b>: Hit the button, and our system will generate a short link
-                    in seconds.
-                    </p>
-                </li>
-                <li>
-                    <b class="ml-2">Share Your Shortened Link</b>: On the next page, copy your new URL and share it on
-                    social
-                    media, chats, or emails.
-                    </p>
-                </li>
-            </ol>
-        </section>
-        <section class="mb-12" id="trackstatistics">
-            <h3 class="text-2xl mb-3">Track Your Statistics</h3>
-            <p>
-                With ShortURL, you not only shorten your links but also track their performance! Discover how many times
-                your URL has been clicked with our click counter. Perfect for analyzing the effectiveness of your
-                advertising campaigns and projects.
-            </p>
-            <h3 class="text-2xl mb-3 mt-8">Why chose ShortURL</h3>
-            <ul class="list-disc list-inside my-3 grid gap-2">
-                <li><b>Simple and Fast</b>: Shorten your links in just a few clicks.</li>
-                <li><b>Detailed Statistics</b>: Monitor traffic and interactions with your URLs.</li>
-                <li><b>Versatile</b>: Use your shortened links anywhere: publications, documents, ads, blogs,
-                    forums, and instant messages.</li>
-                <li><b>SEO Optimized</b>: Our short URLs are designed to enhance visibility on search engines.
-                </li>
-            </ul>
-        </section>
-        <section class="mt-12 mb-8" id="How it works">
-            <h3 class="text-2xl mb-3">FAQ</h3>
-            <div class="space-y-4">
-                <div class="border-b pb-4">
-                    <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer1')">
-                        Is it free to use ShortURL?
-                    </h3>
-                    <p id="answer1" class="hidden text-gray-400 mt-2">
-                        Yes, our URL shortening service is completely free!
-                    </p>
-                </div>
-
-                <div class="border-b pb-4">
-                    <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer2')">
-                        Can I customize my shortened URL?
-                    </h3>
-                    <p id="answer2" class="hidden text-gray-400 mt-2">
-                        Absolutely! We offer customization options to make your link unique and recognizable.
-                    </p>
-                </div>
-                <div class="border-b pb-4">
-                    <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer3')">
-                        How can I access the statistics for my links?
-                    </h3>
-                    <p id="answer3" class="hidden text-gray-400 mt-2">
-                        After shortening your URL, you can view the statistics directly from the confirmation page.
-                    </p>
-                </div>
-                <div class="border-b pb-4">
-                    <h3 class="text-lg font-semibold cursor-pointer" onclick="toggleAnswer('answer4')">
-                        Is ShortURL safe?
-                    </h3>
-                    <p id="answer4" class="hidden text-gray-400 mt-2">
-                        Definitely! Your privacy is important to us. We do not collect personal information, and your
-                        links are secure. </p>
                 </div>
             </div>
+            <div id="box-error" class="hide text-center bg-red-500 w-fit mt-2 px-4 mx-auto rounded-full animate-pulse">
+                <p>URL Format error</p>
+            </div>
         </section>
-        <footer>
-            <p class="text-center mt-8 my-6">© 2024 ShortURL. All rights reserved.</p>
+        <footer class="absolute text-center py-2 opacity-70 bottom-5 left-[50%] translate-x-[-50%]">
+            <p>All right reserved</p>
         </footer>
     </div>
+
     <script src="/short/public/js/listener.js"></script>
 </body>
 

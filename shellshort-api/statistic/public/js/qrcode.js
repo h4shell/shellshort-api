@@ -1,3 +1,9 @@
+function showQr() {
+  console.log("ciao");
+  const qrcode = document.getElementById("qrcode");
+  qrcode.classList.toggle("opacity-0");
+}
+
 function qr(link) {
   const qrcode = new QRCode(document.querySelector("#qrcode"), {
     text: link,

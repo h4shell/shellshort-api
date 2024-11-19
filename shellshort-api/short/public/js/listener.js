@@ -1,22 +1,25 @@
 const input = document.querySelector("input");
-const button = document.querySelector("button");
 const shortLink = document.querySelector("#short_link");
-const boxError = document.querySelector("#box-error");
+const latBar = document.querySelector("#latbar");
+function showLat() {
+  latBar.classList.toggle("w-[300px]");
+}
 
-button.addEventListener("click", () => {
+function makeUrl() {
   const input64 = btoa(input.value);
   fetch(`/api/${input64}`)
     .then((response) => response.json())
     .then((text) => {
       if (text.error) {
-        boxError.classList.remove("hidden");
+        const boxError = document.querySelector("#box-error");
+        boxError.classList.remove("hide");
         input.value = "";
       } else {
         const urlShort = `${window.location.origin}/statistic/${text.code}`;
         window.location.href = urlShort;
       }
     });
-});
+}
 
 input.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
@@ -25,7 +28,8 @@ input.addEventListener("keydown", function (event) {
       .then((response) => response.json())
       .then((text) => {
         if (text.error) {
-          boxError.classList.remove("hidden");
+          const boxError = document.querySelector("#box-error");
+          boxError.classList.remove("hide");
           input.value = "";
         } else {
           const urlShort = `${window.location.origin}/statistic/${text.code}`;
