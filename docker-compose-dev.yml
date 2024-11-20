@@ -1,0 +1,10 @@
+services:
+  shellshort-api:
+    image: php:latest
+    volumes:
+      - ./shellshort-api:/var/www/html
+    container_name: shellshort-api
+    ports:
+      - "8080:8080"
+    working_dir: /var/www/html
+    command: php -S 0.0.0.0:8080

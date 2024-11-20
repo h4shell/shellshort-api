@@ -1,6 +1,6 @@
 <?php
-require("./modules/database.php");
-require("./modules/getParams.php");
+include("./modules/database.php");
+include(__DIR__ . "/modules/getParams.php");
 
 header('Content-Type: application/json');
 

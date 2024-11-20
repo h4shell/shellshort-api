@@ -23,19 +23,7 @@ function makeUrl() {
 
 input.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    const input64 = btoa(input.value);
-    fetch(`/api/${input64}`)
-      .then((response) => response.json())
-      .then((text) => {
-        if (text.error) {
-          const boxError = document.querySelector("#box-error");
-          boxError.classList.remove("hide");
-          input.value = "";
-        } else {
-          const urlShort = `${window.location.origin}/statistic/${text.code}`;
-          window.location.href = urlShort;
-        }
-      });
+    makeUrl();
   }
 });
 

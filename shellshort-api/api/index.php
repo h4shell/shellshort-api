@@ -1,11 +1,10 @@
 <?php
 
-include_once "../modules/utils.php";
-include_once "../modules/getParams.php";
+require "../modules/utils.php";
+require "../modules/getParams.php";
 
 
 function validateURL($url){
-    
     $ParsedURL = explode('.', $url);
     if (count($ParsedURL) > 1) {
         if(explode(":", $url)[0] != "http" && explode(":", $url)[0] != "https"){
@@ -17,7 +16,6 @@ function validateURL($url){
         return false;
     }
 }
-
 
 function generate($db)
 {

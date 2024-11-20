@@ -1,10 +1,25 @@
 services:
-  shellshort-api:
-    image: php:latest
+  phpfpm:
+    image: "php:8.3-fpm"
+    networks:
+      - app-tier
     volumes:
-      - ./shellshort-api:/var/www/html
-    container_name: shellshort-api
+      - ./shellshort-api:/var/www/html/
+    container_name: gg4uno-php
+    restart: always
+  nginx:
+    build: infra/docker/nginx
+    depends_on:
+      - phpfpm
+    networks:
+      - app-tier
     ports:
-      - "8080:8080"
-    working_dir: /var/www/html
-    command: php -S 0.0.0.0:8080
+      - "8385:80"
+    volumes:
+      - ./shellshort-api:/var/www/html/
+    container_name: gg4uno-nginx
+    restart: always
+
+networks:
+  app-tier:
+    driver: bridge
